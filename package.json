@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "format": "prettier . --write"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.4"
   }
 }
