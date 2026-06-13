@@ -1,5 +1,8 @@
 import express from "express";
 import bcrypt from "bcrypt";
+import jsonwebtoken from "jsonwebtoken";
+import { JWT_SECRET } from "./config/env.js";
+
 import exercises from "./data/exercises.json" with { type: "json" };
 import users from "./data/users.json" with { type: "json" };
 
@@ -114,7 +117,12 @@ app.post("/auth/login", async (req, res) => {
     return;
   }
 
-  res.json({ message: "Login successful" });
+  const token = jsonwebtoken.sign(
+    { id: user.id, email: user.email },
+    JWT_SECRET,
+    { expiresIn: "1h" }
+  );
+  res.json({ message: "Login successful", token: token });
 });
 
 app.listen(3000, () => {
