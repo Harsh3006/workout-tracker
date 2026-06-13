@@ -1,9 +1,11 @@
-import http from "http";
+import express from "express";
 
-const server = http.createServer((req, res) => {
-  res.end("Welcome to Workout Tracker API");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Welcome to Workout Tracker API");
 });
 
-server.listen(3000, () => {
+app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
