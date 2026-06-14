@@ -1,20 +1,19 @@
-import express from "express";
 import bcrypt from "bcrypt";
+import express from "express";
 import jsonwebtoken from "jsonwebtoken";
-import { JWT_SECRET } from "./config/env.js";
 
+import { JWT_SECRET } from "./config/env.js";
 import exercises from "./data/exercises.json" with { type: "json" };
 import users from "./data/users.json" with { type: "json" };
-
-import { ExerciseRepository } from "./repositories/exercise.repository.js";
-import { isExerciseCategory } from "./validators/exercise.validator.js";
 import type { Exercise } from "./models/exercise.js";
+import type { User } from "./models/users.js";
+import { ExerciseRepository } from "./repositories/exercise.repository.js";
 import { UserRepository } from "./repositories/user.repository.js";
+import { isExerciseCategory } from "./validators/exercise.validator.js";
 import {
   isValidEmail,
   isValidPassword,
 } from "./validators/users.validators.js";
-import type { User } from "./models/users.js";
 
 const exerciseRepository = new ExerciseRepository(exercises as Exercise[]);
 const userRepository = new UserRepository(users as User[]);

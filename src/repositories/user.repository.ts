@@ -1,5 +1,6 @@
-import type { User } from "../models/users.js";
 import { writeFile } from "fs/promises";
+
+import type { User } from "../models/users.js";
 
 export class UserRepository {
   constructor(private readonly users: User[]) {}
