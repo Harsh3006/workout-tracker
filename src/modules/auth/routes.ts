@@ -2,14 +2,11 @@ import bcrypt from "bcrypt";
 import Router from "express";
 import jsonwebtoken from "jsonwebtoken";
 
-import { JWT_SECRET } from "../config/env.js";
-import users from "../data/users.json" with { type: "json" };
-import type { User } from "../models/users.js";
-import { UserRepository } from "../repositories/user.repository.js";
-import {
-  isValidEmail,
-  isValidPassword,
-} from "../validators/users.validators.js";
+import { JWT_SECRET } from "../../config/env.js";
+import users from "../../data/users.json" with { type: "json" };
+import type { User } from "../users/models.js";
+import { UserRepository } from "../users/repository.js";
+import { isValidEmail, isValidPassword } from "../users/validators.js";
 
 const userRepository = new UserRepository(users as User[]);
 

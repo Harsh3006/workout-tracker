@@ -1,4 +1,4 @@
-import type { Exercise, ExerciseCategory } from "../models/exercise.js";
+import type { Exercise, ExerciseCategory } from "./models.js";
 
 export class ExerciseRepository {
   constructor(private readonly exercises: Exercise[]) {}
