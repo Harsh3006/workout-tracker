@@ -1,7 +1,7 @@
 import express from "express";
 
-import authRouter from "./routes/auth.routes.js";
-import exerciseRouter from "./routes/exercise.routes.js";
+import authRouter from "./modules/auth/routes.js";
+import exerciseRouter from "./modules/exercises/routes.js";
 
 const app = express();
 app.use(express.json());

@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import exercises from "../data/exercises.json" with { type: "json" };
-import type { Exercise } from "../models/exercise.js";
-import { ExerciseRepository } from "../repositories/exercise.repository.js";
-import { isExerciseCategory } from "../validators/exercise.validator.js";
+import exercises from "../../data/exercises.json" with { type: "json" };
+import type { Exercise } from "./models.js";
+import { ExerciseRepository } from "./repository.js";
+import { isExerciseCategory } from "./validators.js";
 
 const exerciseRepository = new ExerciseRepository(exercises as Exercise[]);
 
