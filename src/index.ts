@@ -3,19 +3,15 @@ import express from "express";
 import jsonwebtoken from "jsonwebtoken";
 
 import { JWT_SECRET } from "./config/env.js";
-import exercises from "./data/exercises.json" with { type: "json" };
 import users from "./data/users.json" with { type: "json" };
-import type { Exercise } from "./models/exercise.js";
 import type { User } from "./models/users.js";
-import { ExerciseRepository } from "./repositories/exercise.repository.js";
 import { UserRepository } from "./repositories/user.repository.js";
-import { isExerciseCategory } from "./validators/exercise.validator.js";
+import exerciseRouter from "./routes/exercise.routes.js";
 import {
   isValidEmail,
   isValidPassword,
 } from "./validators/users.validators.js";
 
-const exerciseRepository = new ExerciseRepository(exercises as Exercise[]);
 const userRepository = new UserRepository(users as User[]);
 
 const app = express();
@@ -25,32 +21,7 @@ app.get("/", (_req, res) => {
   res.send("Welcome to Workout Tracker API");
 });
 
-app.get("/exercises", async (req, res) => {
-  const { category } = req.query;
-  if (!category) {
-    const exercises = await exerciseRepository.getAll();
-    res.json(exercises);
-    return;
-  }
-
-  if (typeof category !== "string" || !isExerciseCategory(category)) {
-    res.status(400).json({ message: "Invalid category" });
-    return;
-  }
-
-  const exercises = await exerciseRepository.getByCategory(category);
-  res.json(exercises);
-});
-
-app.get("/exercises/:id", async (req, res) => {
-  const { id } = req.params;
-  const exercise = await exerciseRepository.getById(id);
-  if (!exercise) {
-    res.status(404).json({ message: "Exercise not found" });
-    return;
-  }
-  res.json(exercise);
-});
+app.use("/exercises", exerciseRouter);
 
 app.post("/auth/signup", async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
