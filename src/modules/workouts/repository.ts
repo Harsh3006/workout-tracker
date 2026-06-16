@@ -1,6 +1,6 @@
 import { writeFile } from "fs/promises";
 
-import type { Workout } from "./models.js";
+import type { UpdateWorkoutRequest, Workout } from "./models.js";
 
 export class WorkoutRepository {
   constructor(private readonly workouts: Workout[]) {}
@@ -36,6 +36,24 @@ export class WorkoutRepository {
 
   async create(workout: Workout): Promise<Workout> {
     this.workouts.push(workout);
+    await writeFile(
+      "src/data/workouts.json",
+      JSON.stringify(this.workouts, null, 2)
+    );
+    return workout;
+  }
+
+  async update(
+    userId: string,
+    workoutId: string,
+    updateDate: UpdateWorkoutRequest
+  ): Promise<Workout> {
+    const workout = await this.getById(workoutId, userId);
+    if (!workout) {
+      throw new Error("Workout not found");
+    }
+
+    Object.assign(workout, updateDate);
     await writeFile(
       "src/data/workouts.json",
       JSON.stringify(this.workouts, null, 2)

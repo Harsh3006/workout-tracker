@@ -18,3 +18,5 @@ export interface Workout {
 }
 
 export type CreateWorkoutRequest = Omit<Workout, "id" | "userId">;
+
+export type UpdateWorkoutRequest = Partial<CreateWorkoutRequest>;
