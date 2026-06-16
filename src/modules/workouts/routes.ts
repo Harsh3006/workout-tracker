@@ -25,4 +25,16 @@ workoutsRouter.get("/:id", async (req, res) => {
   res.json(workout);
 });
 
+workoutsRouter.delete("/:id", async (req, res) => {
+  const userId = req.user.id;
+  const workoutId = req.params.id;
+  try {
+    await workoutRepository.delete(workoutId, userId);
+    res.status(204).send();
+  } catch (error) {
+    console.error("Error deleting workout:", error);
+    res.status(404).json({ message: "Workout not found or unauthorized" });
+  }
+});
+
 export default workoutsRouter;
