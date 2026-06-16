@@ -16,3 +16,5 @@ export interface Workout {
   exercises: WorkoutExercise[];
   notes?: string;
 }
+
+export type CreateWorkoutRequest = Omit<Workout, "id" | "userId">;

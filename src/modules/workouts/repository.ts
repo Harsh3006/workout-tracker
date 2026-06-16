@@ -33,4 +33,13 @@ export class WorkoutRepository {
       throw new Error("Workout not found or unauthorized");
     }
   }
+
+  async create(workout: Workout): Promise<Workout> {
+    this.workouts.push(workout);
+    await writeFile(
+      "src/data/workouts.json",
+      JSON.stringify(this.workouts, null, 2)
+    );
+    return workout;
+  }
 }
