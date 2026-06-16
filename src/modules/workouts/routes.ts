@@ -14,4 +14,15 @@ workoutsRouter.get("/", async (req, res) => {
   res.json(workouts);
 });
 
+workoutsRouter.get("/:id", async (req, res) => {
+  const userId = req.user.id;
+  const workoutId = req.params.id;
+  const workout = await workoutRepository.getById(workoutId, userId);
+  if (!workout) {
+    res.status(404).json({ message: "Workout not found" });
+    return;
+  }
+  res.json(workout);
+});
+
 export default workoutsRouter;
