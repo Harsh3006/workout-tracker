@@ -18,6 +18,8 @@ export default defineConfig([
       "simple-import-sort": simpleImportSort,
     },
     rules: {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error",
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
     },
