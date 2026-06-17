@@ -5,8 +5,8 @@ import workouts from "../../data/workouts.json" with { type: "json" };
 import type { Exercise } from "../exercises/models.js";
 import { ExerciseRepository } from "../exercises/repository.js";
 import type {
-  CreateWorkoutRequest,
-  UpdateWorkoutRequest,
+  CreateWorkoutData,
+  UpdateWorkoutData,
   Workout,
 } from "./models.js";
 import { WorkoutRepository } from "./repository.js";
@@ -51,7 +51,7 @@ workoutsRouter.delete("/:id", async (req, res) => {
 
 workoutsRouter.post("/", async (req, res) => {
   const userId = req.user.id;
-  const workoutData = req.body as CreateWorkoutRequest;
+  const workoutData = req.body as CreateWorkoutData;
   if (!workoutData) {
     res.status(400).json({ message: "Workout data is required" });
     return;
@@ -95,7 +95,7 @@ workoutsRouter.post("/", async (req, res) => {
 workoutsRouter.patch("/:id", async (req, res) => {
   const userId = req.user.id;
   const workoutId = req.params.id;
-  const workoutData = req.body as UpdateWorkoutRequest;
+  const workoutData = req.body as UpdateWorkoutData;
 
   if (!workoutData) {
     res.status(400).json({ message: "Workout data is required" });
@@ -109,7 +109,7 @@ workoutsRouter.patch("/:id", async (req, res) => {
     return;
   }
 
-  const updateData: UpdateWorkoutRequest = {};
+  const updateData: UpdateWorkoutData = {};
   if (workoutData.name) {
     updateData.name = workoutData.name;
   }

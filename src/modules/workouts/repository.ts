@@ -1,6 +1,6 @@
 import { writeFile } from "fs/promises";
 
-import type { UpdateWorkoutRequest, Workout } from "./models.js";
+import type { UpdateWorkoutData, Workout } from "./models.js";
 
 export class WorkoutRepository {
   constructor(private readonly workouts: Workout[]) {}
@@ -46,7 +46,7 @@ export class WorkoutRepository {
   async update(
     userId: string,
     workoutId: string,
-    updateDate: UpdateWorkoutRequest
+    updateDate: UpdateWorkoutData
   ): Promise<Workout> {
     const workout = await this.getById(workoutId, userId);
     if (!workout) {

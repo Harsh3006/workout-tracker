@@ -17,6 +17,6 @@ export interface Workout {
   notes?: string;
 }
 
-export type CreateWorkoutRequest = Omit<Workout, "id" | "userId">;
+export type CreateWorkoutData = Omit<Workout, "id" | "userId">;
 
-export type UpdateWorkoutRequest = Partial<CreateWorkoutRequest>;
+export type UpdateWorkoutData = Partial<CreateWorkoutData>;
