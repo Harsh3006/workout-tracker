@@ -1,0 +1,88 @@
+[
+  {
+    "id": "960b0db3-084b-46a4-ac4b-c3d43d23a447",
+    "userId": "46873d82-0403-4407-8262-32e60bc38b52",
+    "name": "Chest Day",
+    "performedAt": "2026-06-14T18:00:00Z",
+    "notes": "Just started my fitness journey!",
+    "exercises": [
+      {
+        "exerciseId": "ex-012",
+        "sets": [
+          {
+            "reps": 15,
+            "weight": 20
+          },
+          {
+            "reps": 15,
+            "weight": 20
+          },
+          {
+            "reps": 10,
+            "weight": 25
+          }
+        ]
+      },
+      {
+        "exerciseId": "ex-013",
+        "sets": [
+          {
+            "reps": 15,
+            "weight": 20
+          },
+          {
+            "reps": 12,
+            "weight": 20
+          },
+          {
+            "reps": 8,
+            "weight": 25
+          }
+        ]
+      },
+      {
+        "exerciseId": "ex-015",
+        "sets": [
+          {
+            "reps": 15,
+            "weight": 0
+          },
+          {
+            "reps": 15,
+            "weight": 0
+          },
+          {
+            "reps": 15,
+            "weight": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "96c99655-f50a-425a-8bae-1c7e7c769856",
+    "userId": "46873d82-0403-4407-8262-32e60bc38b52",
+    "name": "Leg Day",
+    "performedAt": "2026-06-15T18:00:00Z",
+    "notes": "Felt strong today",
+    "exercises": [
+      {
+        "exerciseId": "ex-008",
+        "sets": [
+          {
+            "reps": 10,
+            "weight": 100
+          },
+          {
+            "reps": 8,
+            "weight": 110
+          },
+          {
+            "reps": 6,
+            "weight": 120
+          }
+        ]
+      }
+    ]
+  }
+]

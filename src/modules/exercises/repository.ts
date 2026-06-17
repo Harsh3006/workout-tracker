@@ -11,6 +11,10 @@ export class ExerciseRepository {
     return this.exercises.find((exercise) => exercise.id === id);
   }
 
+  async getByIds(ids: string[]): Promise<Exercise[]> {
+    return this.exercises.filter((exercise) => ids.includes(exercise.id));
+  }
+
   async getByCategory(category: ExerciseCategory): Promise<Exercise[]> {
     return this.exercises.filter((exercise) => exercise.category === category);
   }
