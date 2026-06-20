@@ -1,356 +1,305 @@
 [
   {
-    "id": "ex-001",
     "name": "Squat",
     "description": "Compound lower-body movement targeting the legs and glutes.",
     "category": "legs",
     "muscleGroups": ["quadriceps", "glutes", "hamstrings"]
   },
   {
-    "id": "ex-002",
     "name": "Front Squat",
     "description": "Front-loaded squat emphasizing the quadriceps and core.",
     "category": "legs",
     "muscleGroups": ["quadriceps", "core", "glutes"]
   },
   {
-    "id": "ex-003",
     "name": "Goblet Squat",
     "description": "Dumbbell or kettlebell squat held at chest level.",
     "category": "legs",
     "muscleGroups": ["quadriceps", "glutes", "core"]
   },
   {
-    "id": "ex-004",
     "name": "Deadlift",
     "description": "Compound posterior-chain lift from the floor.",
     "category": "legs",
     "muscleGroups": ["hamstrings", "glutes", "lower-back"]
   },
   {
-    "id": "ex-005",
     "name": "Romanian Deadlift",
     "description": "Hip-hinge movement emphasizing hamstrings and glutes.",
     "category": "legs",
     "muscleGroups": ["hamstrings", "glutes"]
   },
   {
-    "id": "ex-006",
     "name": "Hip Thrust",
     "description": "Glute-focused hip extension exercise.",
     "category": "legs",
     "muscleGroups": ["glutes"]
   },
   {
-    "id": "ex-007",
     "name": "Lunge",
     "description": "Single-leg movement that develops balance and strength.",
     "category": "legs",
     "muscleGroups": ["quadriceps", "glutes", "hamstrings"]
   },
   {
-    "id": "ex-008",
     "name": "Leg Press",
     "description": "Machine-based lower-body pressing exercise.",
     "category": "legs",
     "muscleGroups": ["quadriceps", "glutes"]
   },
   {
-    "id": "ex-009",
     "name": "Leg Extension",
     "description": "Isolation exercise for the quadriceps.",
     "category": "legs",
     "muscleGroups": ["quadriceps"]
   },
   {
-    "id": "ex-010",
     "name": "Leg Curl",
     "description": "Isolation exercise targeting the hamstrings.",
     "category": "legs",
     "muscleGroups": ["hamstrings"]
   },
   {
-    "id": "ex-011",
     "name": "Calf Raise",
     "description": "Isolation movement for calf development.",
     "category": "legs",
     "muscleGroups": ["calves"]
   },
   {
-    "id": "ex-012",
     "name": "Bench Press",
     "description": "Barbell chest press.",
     "category": "chest",
     "muscleGroups": ["chest", "front-deltoids", "triceps"]
   },
   {
-    "id": "ex-013",
     "name": "Incline Bench Press",
     "description": "Chest press performed on an incline bench.",
     "category": "chest",
     "muscleGroups": ["upper-chest", "shoulders", "triceps"]
   },
   {
-    "id": "ex-014",
     "name": "Decline Bench Press",
     "description": "Chest press performed on a decline bench.",
     "category": "chest",
     "muscleGroups": ["lower-chest"]
   },
   {
-    "id": "ex-015",
     "name": "Push-Up",
     "description": "Bodyweight pressing movement for upper-body strength.",
     "category": "chest",
     "muscleGroups": ["chest", "shoulders", "triceps"]
   },
   {
-    "id": "ex-016",
     "name": "Chest Fly",
     "description": "Isolation exercise for chest development.",
     "category": "chest",
     "muscleGroups": ["chest"]
   },
   {
-    "id": "ex-017",
     "name": "Cable Fly",
     "description": "Cable-based chest isolation movement.",
     "category": "chest",
     "muscleGroups": ["chest"]
   },
   {
-    "id": "ex-018",
     "name": "Pull-Up",
     "description": "Bodyweight vertical pulling exercise.",
     "category": "back",
     "muscleGroups": ["lats", "upper-back", "biceps"]
   },
   {
-    "id": "ex-019",
     "name": "Chin-Up",
     "description": "Supinated-grip pull-up variation.",
     "category": "back",
     "muscleGroups": ["lats", "biceps"]
   },
   {
-    "id": "ex-020",
     "name": "Lat Pulldown",
     "description": "Machine-based vertical pulling exercise.",
     "category": "back",
     "muscleGroups": ["lats", "biceps"]
   },
   {
-    "id": "ex-021",
     "name": "Barbell Row",
     "description": "Compound rowing movement using a barbell.",
     "category": "back",
     "muscleGroups": ["upper-back", "lats", "rear-deltoids"]
   },
   {
-    "id": "ex-022",
     "name": "Seated Cable Row",
     "description": "Cable rowing exercise for mid-back development.",
     "category": "back",
     "muscleGroups": ["middle-back", "lats"]
   },
   {
-    "id": "ex-023",
     "name": "Face Pull",
     "description": "Cable exercise targeting rear delts and upper back.",
     "category": "back",
     "muscleGroups": ["rear-deltoids", "upper-back"]
   },
   {
-    "id": "ex-024",
     "name": "Overhead Press",
     "description": "Vertical pressing movement for shoulder strength.",
     "category": "shoulders",
     "muscleGroups": ["shoulders", "triceps"]
   },
   {
-    "id": "ex-025",
     "name": "Arnold Press",
     "description": "Rotational dumbbell shoulder press variation.",
     "category": "shoulders",
     "muscleGroups": ["shoulders"]
   },
   {
-    "id": "ex-026",
     "name": "Lateral Raise",
     "description": "Isolation exercise for side deltoids.",
     "category": "shoulders",
     "muscleGroups": ["side-deltoids"]
   },
   {
-    "id": "ex-027",
     "name": "Front Raise",
     "description": "Isolation exercise targeting front deltoids.",
     "category": "shoulders",
     "muscleGroups": ["front-deltoids"]
   },
   {
-    "id": "ex-028",
     "name": "Rear Delt Fly",
     "description": "Isolation exercise for rear shoulder development.",
     "category": "shoulders",
     "muscleGroups": ["rear-deltoids"]
   },
   {
-    "id": "ex-029",
     "name": "Barbell Curl",
     "description": "Classic biceps isolation exercise.",
     "category": "arms",
     "muscleGroups": ["biceps"]
   },
   {
-    "id": "ex-030",
     "name": "Hammer Curl",
     "description": "Neutral-grip curl targeting biceps and forearms.",
     "category": "arms",
     "muscleGroups": ["biceps", "brachialis", "forearms"]
   },
   {
-    "id": "ex-031",
     "name": "Preacher Curl",
     "description": "Strict curl variation for biceps isolation.",
     "category": "arms",
     "muscleGroups": ["biceps"]
   },
   {
-    "id": "ex-032",
     "name": "Triceps Pushdown",
     "description": "Cable exercise isolating the triceps.",
     "category": "arms",
     "muscleGroups": ["triceps"]
   },
   {
-    "id": "ex-033",
     "name": "Skull Crusher",
     "description": "Lying triceps extension exercise.",
     "category": "arms",
     "muscleGroups": ["triceps"]
   },
   {
-    "id": "ex-034",
     "name": "Dips",
     "description": "Compound bodyweight pressing movement.",
     "category": "arms",
     "muscleGroups": ["triceps", "chest", "shoulders"]
   },
   {
-    "id": "ex-035",
     "name": "Wrist Curl",
     "description": "Forearm isolation exercise.",
     "category": "arms",
     "muscleGroups": ["forearms"]
   },
   {
-    "id": "ex-036",
     "name": "Plank",
     "description": "Static core stabilization exercise.",
     "category": "core",
     "muscleGroups": ["abs", "obliques", "lower-back"]
   },
   {
-    "id": "ex-037",
     "name": "Side Plank",
     "description": "Core stabilization exercise emphasizing obliques.",
     "category": "core",
     "muscleGroups": ["obliques"]
   },
   {
-    "id": "ex-038",
     "name": "Crunch",
     "description": "Abdominal isolation exercise.",
     "category": "core",
     "muscleGroups": ["rectus-abdomen"]
   },
   {
-    "id": "ex-039",
     "name": "Leg Raise",
     "description": "Core exercise targeting lower abs.",
     "category": "core",
     "muscleGroups": ["lower-abs", "hip-flexors"]
   },
   {
-    "id": "ex-040",
     "name": "Russian Twist",
     "description": "Rotational core exercise.",
     "category": "core",
     "muscleGroups": ["obliques"]
   },
   {
-    "id": "ex-041",
     "name": "Ab Wheel Rollout",
     "description": "Advanced core strengthening movement.",
     "category": "core",
     "muscleGroups": ["core"]
   },
   {
-    "id": "ex-042",
     "name": "Burpee",
     "description": "Full-body conditioning exercise.",
     "category": "full-body",
     "muscleGroups": ["chest", "legs", "core", "shoulders"]
   },
   {
-    "id": "ex-043",
     "name": "Kettlebell Swing",
     "description": "Explosive hip-hinge conditioning exercise.",
     "category": "full-body",
     "muscleGroups": ["glutes", "hamstrings", "core"]
   },
   {
-    "id": "ex-044",
     "name": "Farmer's Carry",
     "description": "Loaded carry exercise for grip and core strength.",
     "category": "full-body",
     "muscleGroups": ["grip", "traps", "core"]
   },
   {
-    "id": "ex-045",
     "name": "Clean and Press",
     "description": "Olympic-style full-body power movement.",
     "category": "full-body",
     "muscleGroups": ["legs", "back", "shoulders"]
   },
   {
-    "id": "ex-046",
     "name": "Snatch",
     "description": "Olympic lift requiring full-body coordination and power.",
     "category": "full-body",
     "muscleGroups": ["full-body"]
   },
   {
-    "id": "ex-047",
     "name": "Running",
     "description": "Cardiovascular endurance exercise.",
     "category": "cardio",
     "muscleGroups": ["legs", "cardiovascular-system"]
   },
   {
-    "id": "ex-048",
     "name": "Cycling",
     "description": "Lower-body focused cardiovascular exercise.",
     "category": "cardio",
     "muscleGroups": ["quadriceps", "glutes", "calves"]
   },
   {
-    "id": "ex-049",
     "name": "Rowing",
     "description": "Full-body cardio exercise using a rowing motion.",
     "category": "cardio",
     "muscleGroups": ["back", "legs", "arms"]
   },
   {
-    "id": "ex-050",
     "name": "Jump Rope",
     "description": "Cardio exercise that improves coordination and endurance.",
     "category": "cardio",
     "muscleGroups": ["calves", "shoulders", "cardiovascular-system"]
   },
   {
-    "id": "ex-051",
     "name": "Swimming",
     "description": "Full-body cardiovascular exercise performed in water.",
     "category": "cardio",
