@@ -3,11 +3,11 @@ import type { Request, Response } from "express";
 import jsonwebtoken from "jsonwebtoken";
 
 import { JWT_SECRET } from "../../config/env.js";
-import type { User } from "../users/models.js";
-import type { UserRepository } from "../users/repository.js";
+import { createUser, getUserByEmail } from "../users/queries.js";
+import type { NewUser } from "../users/schema.js";
 import { isValidEmail, isValidPassword } from "../users/validators.js";
 
-export function createAuthController(userRepository: UserRepository) {
+export function createAuthController() {
   {
     async function signup(req: Request, res: Response) {
       const { email, password, firstName, lastName } = req.body;
@@ -28,21 +28,20 @@ export function createAuthController(userRepository: UserRepository) {
         return;
       }
 
-      const existingUser = await userRepository.getByEmail(email);
+      const existingUser = await getUserByEmail(email);
       if (existingUser) {
         res.status(409).json({ message: "Email already in use" });
         return;
       }
 
       const passwordHash = await bcrypt.hash(password, 10);
-      const newUser: User = {
-        id: crypto.randomUUID(),
+      const newUser: NewUser = {
         email,
         passwordHash,
         firstName,
         lastName,
       };
-      await userRepository.create(newUser);
+      await createUser(newUser);
       res.status(201).json({ message: "User created" });
     }
 
@@ -63,7 +62,7 @@ export function createAuthController(userRepository: UserRepository) {
         return;
       }
 
-      const user = await userRepository.getByEmail(email);
+      const user = await getUserByEmail(email);
       if (!user) {
         res.status(401).json({ message: "Invalid email or password" });
         return;
