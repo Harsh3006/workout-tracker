@@ -1,141 +1,74 @@
 import type { Request, Response } from "express";
 
-import type {
-  CreateWorkoutData,
-  UpdateWorkoutData,
-  Workout,
-} from "./models.js";
-import type { WorkoutRepository } from "./repository.js";
 import {
-  getMissingExerciseIds,
-  validateWorkoutExercisesData,
+  createWorkout,
+  deleteWorkout,
+  getWorkoutDetails,
+  getWorkouts,
+  updateWorkout,
+} from "./queries.js";
+import {
+  validateCreateWorkoutData,
+  validateUpdateWorkoutData,
 } from "./validators.js";
 
-export function createWorkoutController(workoutRepository: WorkoutRepository) {
+export function createWorkoutController() {
   {
     async function getAll(req: Request, res: Response) {
       const userId = req.user.id;
-      const workouts = await workoutRepository.getByUserId(userId);
+      const workouts = await getWorkouts(userId);
       res.json(workouts);
     }
 
     async function getById(req: Request<{ id: string }>, res: Response) {
       const userId = req.user.id;
       const workoutId = req.params.id;
-      const workout = await workoutRepository.getById(workoutId, userId);
-      if (!workout) {
+      try {
+        const workout = await getWorkoutDetails(userId, workoutId);
+        res.json(workout);
+      } catch {
         res.status(404).json({ message: "Workout not found" });
         return;
       }
-      res.json(workout);
     }
 
     async function create(req: Request, res: Response) {
-      const userId = req.user.id;
-      const workoutData = req.body as CreateWorkoutData;
-      if (!workoutData) {
-        res.status(400).json({ message: "Workout data is required" });
-        return;
-      }
-
-      if (
-        !workoutData.name ||
-        !workoutData.performedAt ||
-        !workoutData.exercises
-      ) {
-        res.status(400).json({
-          message: "Workout name, performedAt, and exercises are required",
+      try {
+        const userId = req.user.id;
+        const workoutData = await validateCreateWorkoutData(req.body);
+        const workout = await createWorkout(userId, workoutData);
+        res.status(201).json({
+          message: "Workout created successfully",
+          workoutId: workout.id,
         });
-        return;
-      }
-
-      const exercises = workoutData.exercises;
-      const errorMessage = validateWorkoutExercisesData(exercises);
-      if (errorMessage) {
-        res.status(400).json({ message: errorMessage });
-        return;
-      }
-
-      const missingExerciseIds = await getMissingExerciseIds(exercises);
-      if (missingExerciseIds.length > 0) {
+      } catch (error) {
         res.status(400).json({
-          message: "One or more exercises do not exist",
-          missingIds: missingExerciseIds,
+          message:
+            error instanceof Error ? error.message : "Invalid workout data",
         });
-        return;
       }
-
-      const newWorkout: Workout = {
-        id: crypto.randomUUID(),
-        userId,
-        ...workoutData,
-      };
-      await workoutRepository.create(newWorkout);
-      res.status(201).json(newWorkout);
     }
 
     async function update(req: Request<{ id: string }>, res: Response) {
-      const userId = req.user.id;
-      const workoutId = req.params.id;
-      const workoutData = req.body as UpdateWorkoutData;
-
-      if (!workoutData) {
-        res.status(400).json({ message: "Workout data is required" });
-        return;
-      }
-
-      if (Object.keys(workoutData).length === 0) {
+      try {
+        const userId = req.user.id;
+        const workoutId = req.params.id;
+        const workoutData = await validateUpdateWorkoutData(req.body);
+        await updateWorkout(userId, workoutId, workoutData);
+        res.status(200).json({ message: "Workout updated successfully" });
+      } catch (error) {
         res.status(400).json({
-          message: "At least one field must be provided for update",
+          message:
+            error instanceof Error ? error.message : "Invalid workout data",
         });
-        return;
       }
-
-      const updateData: UpdateWorkoutData = {};
-      if (workoutData.name) {
-        updateData.name = workoutData.name;
-      }
-      if (workoutData.performedAt) {
-        updateData.performedAt = workoutData.performedAt;
-      }
-      if (workoutData.notes !== undefined) {
-        updateData.notes = workoutData.notes;
-      }
-      if (workoutData.exercises) {
-        const errorMessage = validateWorkoutExercisesData(
-          workoutData.exercises
-        );
-        if (errorMessage) {
-          res.status(400).json({ message: errorMessage });
-          return;
-        }
-
-        const missingExerciseIds = await getMissingExerciseIds(
-          workoutData.exercises
-        );
-        if (missingExerciseIds.length > 0) {
-          res.status(400).json({
-            message: "One or more exercises do not exist",
-            missingIds: missingExerciseIds,
-          });
-          return;
-        }
-        updateData.exercises = workoutData.exercises;
-      }
-
-      const updatedWorkout = await workoutRepository.update(
-        userId,
-        workoutId,
-        updateData
-      );
-      res.json(updatedWorkout);
     }
 
     async function remove(req: Request<{ id: string }>, res: Response) {
       const userId = req.user.id;
       const workoutId = req.params.id;
       try {
-        await workoutRepository.delete(workoutId, userId);
+        await deleteWorkout(userId, workoutId);
         res.status(204).send();
       } catch (error) {
         console.error("Error deleting workout:", error);
