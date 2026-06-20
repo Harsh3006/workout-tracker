@@ -10,6 +10,7 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
+import type { Exercise } from "../exercises/schema.js";
 import { exercises } from "../exercises/schema.js";
 import { users } from "../users/schema.js";
 
@@ -80,9 +81,24 @@ export const exerciseSets = pgTable(
 
 export type Workout = typeof workouts.$inferSelect;
 export type NewWorkout = typeof workouts.$inferInsert;
+export type UpdateWorkout = Partial<typeof workouts.$inferInsert>;
 
 export type WorkoutExercise = typeof workoutExercises.$inferSelect;
 export type NewWorkoutExercise = typeof workoutExercises.$inferInsert;
 
 export type ExerciseSet = typeof exerciseSets.$inferSelect;
 export type NewExerciseSet = typeof exerciseSets.$inferInsert;
+
+export type WorkoutExerciseDetails = {
+  exerciseId: Exercise["id"];
+  name: Exercise["name"];
+  category: Exercise["category"];
+  sets: {
+    reps: ExerciseSet["reps"];
+    weight: ExerciseSet["weight"];
+  }[];
+};
+
+export type WorkoutDetails = Omit<Workout, "userId"> & {
+  exercises: WorkoutExerciseDetails[];
+};
