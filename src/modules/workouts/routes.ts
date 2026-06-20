@@ -1,13 +1,9 @@
 import Router from "express";
 
-import workouts from "../../data/workouts.json" with { type: "json" };
 import { createWorkoutController } from "./controller.js";
-import type { Workout } from "./models.js";
-import { WorkoutRepository } from "./repository.js";
 
 const workoutsRouter = Router();
-const workoutRepository = new WorkoutRepository(workouts as Workout[]);
-const workoutController = createWorkoutController(workoutRepository);
+const workoutController = createWorkoutController();
 
 workoutsRouter
   .route("/")
