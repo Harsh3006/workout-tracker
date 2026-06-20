@@ -1,4 +1,4 @@
-import type { ExerciseRepository } from "../exercises/repository.js";
+import { getExercises } from "../exercises/queries.js";
 import type { WorkoutExercise } from "./models.js";
 
 export function validateWorkoutExercisesData(
@@ -26,11 +26,10 @@ export function validateWorkoutExercisesData(
 }
 
 export async function getMissingExerciseIds(
-  exercises: WorkoutExercise[],
-  exerciseRepository: ExerciseRepository
-): Promise<string[]> {
-  const exerciseIds = exercises.map((e) => e.exerciseId);
-  const existingExercises = await exerciseRepository.getByIds(exerciseIds);
+  exercises: WorkoutExercise[]
+): Promise<number[]> {
+  const exerciseIds = exercises.map((e) => Number(e.exerciseId));
+  const existingExercises = await getExercises({ exerciseIds });
   const existingExerciseIds = new Set(existingExercises.map((e) => e.id));
   return exerciseIds.filter((id) => !existingExerciseIds.has(id));
 }

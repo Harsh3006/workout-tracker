@@ -1,6 +1,5 @@
 import type { Request, Response } from "express";
 
-import type { ExerciseRepository } from "../exercises/repository.js";
 import type {
   CreateWorkoutData,
   UpdateWorkoutData,
@@ -12,10 +11,7 @@ import {
   validateWorkoutExercisesData,
 } from "./validators.js";
 
-export function createWorkoutController(
-  workoutRepository: WorkoutRepository,
-  exerciseRepository: ExerciseRepository
-) {
+export function createWorkoutController(workoutRepository: WorkoutRepository) {
   {
     async function getAll(req: Request, res: Response) {
       const userId = req.user.id;
@@ -60,10 +56,7 @@ export function createWorkoutController(
         return;
       }
 
-      const missingExerciseIds = await getMissingExerciseIds(
-        exercises,
-        exerciseRepository
-      );
+      const missingExerciseIds = await getMissingExerciseIds(exercises);
       if (missingExerciseIds.length > 0) {
         res.status(400).json({
           message: "One or more exercises do not exist",
@@ -118,8 +111,7 @@ export function createWorkoutController(
         }
 
         const missingExerciseIds = await getMissingExerciseIds(
-          workoutData.exercises,
-          exerciseRepository
+          workoutData.exercises
         );
         if (missingExerciseIds.length > 0) {
           res.status(400).json({
