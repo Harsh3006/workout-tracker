@@ -9,7 +9,8 @@
     "format": "prettier --write .",
     "lint": "eslint . --no-warn-ignored --max-warnings=0",
     "typecheck": "tsc --noEmit",
-    "prepare": "husky"
+    "prepare": "husky",
+    "seed": "tsx src/db/seed.ts"
   },
   "lint-staged": {
     "*.{ts,json,md}": [
