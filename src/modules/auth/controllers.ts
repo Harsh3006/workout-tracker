@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import type { RequestHandler } from "express";
+import type { Request, Response } from "express";
 import jsonwebtoken from "jsonwebtoken";
 
 import { JWT_SECRET } from "../../config/env.js";
@@ -12,7 +12,7 @@ import { createUser, getUserByEmail } from "../users/queries.js";
 import type { NewUser } from "../users/schema.js";
 import { isValidEmail, isValidPassword } from "../users/validators.js";
 
-export const signup: RequestHandler = async (req, res) => {
+export async function signup(req: Request, res: Response) {
   const { email, password, firstName, lastName } = req.body;
   if (!email || !password || !firstName)
     throw new ValidationError("Missing required fields.");
@@ -32,9 +32,9 @@ export const signup: RequestHandler = async (req, res) => {
   };
   await createUser(newUser);
   res.status(201).json({ message: "User created successfully." });
-};
+}
 
-export const login: RequestHandler = async (req, res) => {
+export async function login(req: Request, res: Response) {
   const { email, password } = req.body;
   if (!email || !password)
     throw new ValidationError("Missing email or password.");
@@ -55,4 +55,4 @@ export const login: RequestHandler = async (req, res) => {
     { expiresIn: "1h" }
   );
   res.json({ message: "Logged in successfully.", token: token });
-};
+}
