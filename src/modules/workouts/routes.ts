@@ -1,6 +1,6 @@
 import Router from "express";
 
-import { create, getAll, getById, remove, update } from "./controller.js";
+import { create, getAll, getById, remove, update } from "./controllers.js";
 
 const workoutsRouter = Router();
 
