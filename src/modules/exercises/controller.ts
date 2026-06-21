@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 
+import { NotFoundError, ValidationError } from "../../shared/errors.js";
 import { getExerciseById, getExercises } from "./queries.js";
 import { isExerciseCategory } from "./validators.js";
 
@@ -10,10 +11,10 @@ export function createExercisesController() {
       const category = isExerciseCategory(rawCategory)
         ? rawCategory
         : undefined;
-      if (rawCategory && !category) {
-        res.status(400).json({ message: "Invalid category" });
-        return;
-      }
+      if (rawCategory && !category)
+        throw new ValidationError("Invalid category.", {
+          category: `${rawCategory} is not a valid exercise category.`,
+        });
 
       const exercises = await getExercises({ category });
       res.json(exercises);
@@ -21,11 +22,12 @@ export function createExercisesController() {
 
     async function getById(req: Request<{ id: string }>, res: Response) {
       const id = Number(req.params.id);
+      if (isNaN(id))
+        throw new ValidationError("Invalid exercise id.", {
+          id: "Exercise id must be a number.",
+        });
       const exercise = await getExerciseById(id);
-      if (!exercise) {
-        res.status(404).json({ message: "Exercise not found" });
-        return;
-      }
+      if (!exercise) throw new NotFoundError("Exercise not found.");
       res.json(exercise);
     }
 

@@ -2,6 +2,7 @@ import { and, desc, eq, inArray } from "drizzle-orm";
 
 import { db } from "../../db/index.js";
 import type { Transaction } from "../../db/types.js";
+import { NotFoundError } from "../../shared/errors.js";
 import { exercises } from "../exercises/schema.js";
 import type {
   ExerciseSet,
@@ -51,7 +52,8 @@ export async function createWorkout(
         notes: data.notes ?? null,
       })
       .returning();
-    if (!workout) throw new Error("Failed to create workout.");
+    if (!workout)
+      throw new Error("Failed to create workout: database returned no rows.");
 
     const createdWorkoutExercises = await createWorkoutExercises(
       tx,
@@ -91,7 +93,9 @@ export async function createExerciseSets(
   const setsToInsert = data.flatMap((exercise, exerciseIndex) => {
     const workoutExerciseId = workoutExerciseIds[exerciseIndex];
     if (workoutExerciseId === undefined)
-      throw new Error(`Missing workoutExerciseId at index ${exerciseIndex}`);
+      throw new Error(
+        "Invariant violated: workoutExerciseIds and data must have the same length."
+      );
 
     return exercise.sets.map((set, setIndex) => ({
       workoutExerciseId,
@@ -119,7 +123,7 @@ export async function updateWorkout(
       .set(values)
       .where(and(eq(workouts.userId, userId), eq(workouts.id, workoutId)))
       .returning();
-    if (!updatedWorkout) throw new Error("Failed to update workout");
+    if (!updatedWorkout) throw new NotFoundError("Workout not found.");
 
     const workoutExercisesToUpdate = data.exercises;
     if (workoutExercisesToUpdate !== undefined) {
@@ -151,7 +155,7 @@ export async function deleteWorkout(
     .delete(workouts)
     .where(and(eq(workouts.userId, userId), eq(workouts.id, workoutId)))
     .returning({ id: workouts.id });
-  if (!deletedRows) throw new Error("Workout not found");
+  if (!deletedRows) throw new NotFoundError("Workout not found.");
 }
 
 export async function getWorkoutDetails(
@@ -159,7 +163,7 @@ export async function getWorkoutDetails(
   workoutId: string
 ): Promise<WorkoutDetails> {
   const workout = await getWorkoutById(userId, workoutId);
-  if (!workout) throw new Error("Workout not found");
+  if (!workout) throw new NotFoundError("Workout not found.");
 
   const workoutExercisesRows = await db
     .select({
