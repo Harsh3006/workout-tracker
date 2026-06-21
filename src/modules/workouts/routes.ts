@@ -1,19 +1,10 @@
 import Router from "express";
 
-import { createWorkoutController } from "./controller.js";
+import { create, getAll, getById, remove, update } from "./controller.js";
 
 const workoutsRouter = Router();
-const workoutController = createWorkoutController();
 
-workoutsRouter
-  .route("/")
-  .get(workoutController.getAll)
-  .post(workoutController.create);
-
-workoutsRouter
-  .route("/:id")
-  .get(workoutController.getById)
-  .patch(workoutController.update)
-  .delete(workoutController.remove);
+workoutsRouter.route("/").get(getAll).post(create);
+workoutsRouter.route("/:id").get(getById).patch(update).delete(remove);
 
 export default workoutsRouter;

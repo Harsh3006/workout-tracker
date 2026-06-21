@@ -1,11 +1,10 @@
 import { Router } from "express";
 
-import { createExercisesController } from "./controller.js";
+import { getAll, getById } from "./controller.js";
 
 const exerciseRouter = Router();
-const exercisesController = createExercisesController();
 
-exerciseRouter.get("/", exercisesController.getAll);
-exerciseRouter.get("/:id", exercisesController.getById);
+exerciseRouter.get("/", getAll);
+exerciseRouter.get("/:id", getById);
 
 export default exerciseRouter;
