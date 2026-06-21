@@ -19,7 +19,7 @@ app.use("/auth", authRouter);
 app.use("/workouts", authenticate, workoutsRouter);
 
 app.use((_req, _res) => {
-  throw new NotFoundError("Route not found");
+  throw new NotFoundError("Route not found.");
 });
 app.use(errorHandler);
 
