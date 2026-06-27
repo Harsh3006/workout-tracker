@@ -9,4 +9,7 @@ export default defineConfig({
       include: ["src/**/*.ts"],
     },
   },
+  resolve: {
+    tsconfigPaths: true,
+  },
 });
