@@ -2,12 +2,13 @@ import bcrypt from "bcrypt";
 import type { Request, Response } from "express";
 import jsonwebtoken from "jsonwebtoken";
 
-import { JWT_SECRET } from "../../config/env.js";
+import { JWT_SECRET } from "@/config/env.js";
 import {
   ConflictError,
   UnauthenticatedError,
   ValidationError,
-} from "../../shared/errors.js";
+} from "@/shared/errors.js";
+
 import { createUser, getUserByEmail } from "../users/queries.js";
 import type { NewUser } from "../users/schema.js";
 import { isValidEmail, isValidPassword } from "../users/validators.js";

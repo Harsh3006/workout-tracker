@@ -1,4 +1,5 @@
-import { ValidationError } from "../../shared/errors.js";
+import { ValidationError } from "@/shared/errors.js";
+
 import { getInvalidExerciseIds } from "../exercises/validators.js";
 import type {
   CreateWorkoutData,
