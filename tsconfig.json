@@ -1,11 +1,13 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
+  "exclude": ["package.json", "dist", "node_modules", "coverage"],
+  "include": ["."],
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"]
     },
     // File Layout
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
 
     // Environment Settings
@@ -30,6 +32,5 @@
     // Recommended Options
     "isolatedModules": true,
     "skipLibCheck": true
-  },
-  "include": ["src/**/*"]
+  }
 }
