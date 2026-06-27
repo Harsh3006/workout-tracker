@@ -1,12 +1,18 @@
+import { ValidationError } from "@/shared/errors.js";
+
 import { getExercises } from "./queries.js";
 import type { ExerciseCategory } from "./schema.js";
 import { exerciseCategoryEnum } from "./schema.js";
 
-export function isExerciseCategory(value: unknown): value is ExerciseCategory {
-  return (
-    typeof value === "string" &&
-    exerciseCategoryEnum.enumValues.includes(value as ExerciseCategory)
-  );
+export function validateExerciseCategory(
+  category: unknown
+): asserts category is ExerciseCategory {
+  if (typeof category !== "string")
+    throw new ValidationError("Category must be a string.");
+  if (!exerciseCategoryEnum.enumValues.includes(category as ExerciseCategory))
+    throw new ValidationError("Invalid category.", {
+      category: `${category} is not a valid exercise category.`,
+    });
 }
 
 export async function getInvalidExerciseIds(
