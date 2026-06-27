@@ -1,8 +1,9 @@
 import { notInArray, sql } from "drizzle-orm";
 
-import exercises from "../data/exercises.json" with { type: "json" };
-import type { NewExercise } from "../modules/exercises/schema.js";
-import { exercises as exercisesTable } from "../modules/exercises/schema.js";
+import exercises from "@/data/exercises.json" with { type: "json" };
+import type { NewExercise } from "@/modules/exercises/schema.js";
+import { exercises as exercisesTable } from "@/modules/exercises/schema.js";
+
 import { db } from "./index.js";
 
 await db.transaction(async (tx) => {

@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 
-import { NotFoundError, ValidationError } from "../../shared/errors.js";
+import { NotFoundError, ValidationError } from "@/shared/errors.js";
+
 import { getExerciseById, getExercises } from "./queries.js";
 import { isExerciseCategory } from "./validators.js";
 

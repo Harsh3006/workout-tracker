@@ -1,9 +1,10 @@
 import { and, desc, eq, inArray } from "drizzle-orm";
 
-import { db } from "../../db/index.js";
-import type { Transaction } from "../../db/types.js";
-import { NotFoundError } from "../../shared/errors.js";
-import { exercises } from "../exercises/schema.js";
+import { db } from "@/db/index.js";
+import type { Transaction } from "@/db/types.js";
+import { exercises } from "@/modules/exercises/schema.js";
+import { NotFoundError } from "@/shared/errors.js";
+
 import type {
   ExerciseSet,
   UpdateWorkout,

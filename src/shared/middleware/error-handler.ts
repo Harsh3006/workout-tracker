@@ -1,6 +1,6 @@
 import type { ErrorRequestHandler } from "express";
 
-import { AppError, ValidationError } from "../errors.js";
+import { AppError, ValidationError } from "@/shared/errors.js";
 
 export const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
   if (err instanceof ValidationError) {

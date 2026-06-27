@@ -1,9 +1,9 @@
 import type { RequestHandler } from "express";
 import jsonwebtoken from "jsonwebtoken";
 
-import { JWT_SECRET } from "../../config/env.js";
-import type { AuthPayload } from "../../modules/auth/types.js";
-import { UnauthenticatedError } from "../errors.js";
+import { JWT_SECRET } from "@/config/env.js";
+import type { AuthPayload } from "@/modules/auth/types.js";
+import { UnauthenticatedError } from "@/shared/errors.js";
 
 export const authenticate: RequestHandler = (req, _res, next) => {
   const authHeader = req.headers.authorization;

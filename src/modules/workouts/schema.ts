@@ -10,9 +10,9 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-import type { Exercise } from "../exercises/schema.js";
-import { exercises } from "../exercises/schema.js";
-import { users } from "../users/schema.js";
+import type { Exercise } from "@/modules/exercises/schema.js";
+import { exercises } from "@/modules/exercises/schema.js";
+import { users } from "@/modules/users/schema.js";
 
 export const workouts = pgTable("workouts", {
   id: uuid("id")

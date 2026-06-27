@@ -1,6 +1,7 @@
 import { eq } from "drizzle-orm";
 
-import { db } from "../../db/index.js";
+import { db } from "@/db/index.js";
+
 import type { NewUser, User } from "./schema.js";
 import { users } from "./schema.js";
 
