@@ -3,15 +3,14 @@ import type { Request, Response } from "express";
 import jsonwebtoken from "jsonwebtoken";
 
 import { JWT_SECRET } from "@/config/env.js";
+import { createUser, getUserByEmail } from "@/modules/users/queries.js";
+import type { NewUser } from "@/modules/users/schema.js";
+import { isValidEmail, isValidPassword } from "@/modules/users/validators.js";
 import {
   ConflictError,
   UnauthenticatedError,
   ValidationError,
 } from "@/shared/errors.js";
-
-import { createUser, getUserByEmail } from "../users/queries.js";
-import type { NewUser } from "../users/schema.js";
-import { isValidEmail, isValidPassword } from "../users/validators.js";
 
 export async function signup(req: Request, res: Response) {
   const { email, password, firstName, lastName } = req.body;
