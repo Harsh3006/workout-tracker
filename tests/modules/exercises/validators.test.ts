@@ -4,28 +4,31 @@ import { getExercises } from "@/modules/exercises/queries.js";
 import { exerciseCategoryEnum } from "@/modules/exercises/schema.js";
 import {
   getInvalidExerciseIds,
-  isExerciseCategory,
+  validateExerciseCategory,
 } from "@/modules/exercises/validators.js";
+import { ValidationError } from "@/shared/errors.js";
 
 vi.mock("@/modules/exercises/queries.js");
 
 afterEach(() => vi.clearAllMocks());
 
-describe("isExerciseCategory", () => {
-  it("returns false for a non-string value", () => {
+describe("validateExerciseCategory", () => {
+  it("throws ValidationError for a non-string value", () => {
     const values = [123, null, undefined, {}, [], true, false];
     for (const value of values) {
-      expect(isExerciseCategory(value)).toBe(false);
+      expect(() => validateExerciseCategory(value)).toThrow(ValidationError);
     }
   });
 
-  it("returns false for an invalid exercise category", () => {
-    expect(isExerciseCategory("invalid-category")).toBe(false);
+  it("throws ValidationError for an invalid exercise category", () => {
+    expect(() => validateExerciseCategory("invalid-category")).toThrow(
+      ValidationError
+    );
   });
 
-  it("returns true for a valid exercise category", () => {
+  it("does not throw for a valid exercise category", () => {
     for (const category of exerciseCategoryEnum.enumValues) {
-      expect(isExerciseCategory(category)).toBe(true);
+      expect(() => validateExerciseCategory(category)).not.toThrow();
     }
   });
 });

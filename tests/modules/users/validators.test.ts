@@ -1,16 +1,17 @@
 import { describe, expect, it } from "vitest";
 
-import { isValidEmail, isValidPassword } from "@/modules/users/validators.js";
+import { validateEmail, validatePassword } from "@/modules/users/validators.js";
+import { ValidationError } from "@/shared/errors.js";
 
-describe("isValidEmail", () => {
-  it("returns false for non-string inputs", () => {
+describe("validateEmail", () => {
+  it("throws ValidationError for non-string inputs", () => {
     const values = [123, null, undefined, {}, [], true, false];
     for (const value of values) {
-      expect(isValidEmail(value)).toBe(false);
+      expect(() => validateEmail(value)).toThrow(ValidationError);
     }
   });
 
-  it("returns false for invalid email formats", () => {
+  it("throws ValidationError for invalid email formats", () => {
     const invalidEmails = [
       "",
       " ",
@@ -21,11 +22,11 @@ describe("isValidEmail", () => {
       "username@domain,com",
     ];
     for (const email of invalidEmails) {
-      expect(isValidEmail(email)).toBe(false);
+      expect(() => validateEmail(email)).toThrow(ValidationError);
     }
   });
 
-  it("returns true for valid email formats", () => {
+  it("does not throw for valid email formats", () => {
     const validEmails = [
       "user@example.com",
       "john.doe@example.co.uk",
@@ -33,27 +34,27 @@ describe("isValidEmail", () => {
       "user_name@example.io",
     ];
     for (const email of validEmails) {
-      expect(isValidEmail(email)).toBe(true);
+      expect(() => validateEmail(email)).not.toThrow();
     }
   });
 });
 
-describe("isValidPassword", () => {
-  it("returns false for non-string inputs", () => {
+describe("validatePassword", () => {
+  it("throws ValidationError for non-string inputs", () => {
     const values = [123, null, undefined, {}, [], true, false];
     for (const value of values) {
-      expect(isValidPassword(value)).toBe(false);
+      expect(() => validatePassword(value)).toThrow(ValidationError);
     }
   });
 
-  it("returns false for passwords shorter than 8 characters", () => {
+  it("throws ValidationError for passwords shorter than 8 characters", () => {
     const shortPasswords = ["", "123", "abc", "pass", "1234567"];
     for (const password of shortPasswords) {
-      expect(isValidPassword(password)).toBe(false);
+      expect(() => validatePassword(password)).toThrow(ValidationError);
     }
   });
 
-  it("returns true for passwords with 8 or more characters", () => {
+  it("does not throw for passwords with 8 or more characters", () => {
     const validPasswords = [
       "password",
       "12345678",
@@ -61,7 +62,7 @@ describe("isValidPassword", () => {
       "validPass!",
     ];
     for (const password of validPasswords) {
-      expect(isValidPassword(password)).toBe(true);
+      expect(() => validatePassword(password)).not.toThrow();
     }
   });
 });
