@@ -3,16 +3,11 @@ import type { Request, Response } from "express";
 import { NotFoundError, ValidationError } from "@/shared/errors.js";
 
 import { getExerciseById, getExercises } from "./queries.js";
-import { isExerciseCategory } from "./validators.js";
+import { validateExerciseCategory } from "./validators.js";
 
 export async function getAll(req: Request, res: Response) {
-  const rawCategory = req.query.category;
-  const category = isExerciseCategory(rawCategory) ? rawCategory : undefined;
-  if (rawCategory && !category)
-    throw new ValidationError("Invalid category.", {
-      category: `${rawCategory} is not a valid exercise category.`,
-    });
-
+  const category = req.query.category;
+  if (category !== undefined) validateExerciseCategory(category);
   const exercises = await getExercises({ category });
   res.json(exercises);
 }

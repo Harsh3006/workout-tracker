@@ -5,7 +5,7 @@ import jsonwebtoken from "jsonwebtoken";
 import { JWT_SECRET } from "@/config/env.js";
 import { createUser, getUserByEmail } from "@/modules/users/queries.js";
 import type { NewUser } from "@/modules/users/schema.js";
-import { isValidEmail, isValidPassword } from "@/modules/users/validators.js";
+import { validateEmail, validatePassword } from "@/modules/users/validators.js";
 import {
   ConflictError,
   UnauthenticatedError,
@@ -16,9 +16,8 @@ export async function signup(req: Request, res: Response) {
   const { email, password, firstName, lastName } = req.body;
   if (!email || !password || !firstName)
     throw new ValidationError("Missing required fields.");
-  if (!isValidEmail(email)) throw new ValidationError("Invalid email format.");
-  if (!isValidPassword(password))
-    throw new ValidationError("Password must be at least 8 characters.");
+  validateEmail(email);
+  validatePassword(password);
 
   const existingUser = await getUserByEmail(email);
   if (existingUser) throw new ConflictError("Email already in use.");
@@ -38,9 +37,8 @@ export async function login(req: Request, res: Response) {
   const { email, password } = req.body;
   if (!email || !password)
     throw new ValidationError("Missing email or password.");
-  if (!isValidEmail(email)) throw new ValidationError("Invalid email format.");
-  if (!isValidPassword(password))
-    throw new ValidationError("Password must be at least 8 characters.");
+  validateEmail(email);
+  validatePassword(password);
 
   const user = await getUserByEmail(email);
   if (!user) throw new UnauthenticatedError("Invalid email or password.");
