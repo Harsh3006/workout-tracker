@@ -1,9 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import {
-  isValidEmail,
-  isValidPassword,
-} from "../../../src/modules/users/validators";
+import { isValidEmail, isValidPassword } from "@/modules/users/validators.js";
 
 describe("isValidEmail", () => {
   it("returns false for non-string inputs", () => {

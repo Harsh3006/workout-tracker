@@ -3,18 +3,18 @@ import type { Request, Response } from "express";
 import jsonwebtoken from "jsonwebtoken";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { login, signup } from "../../../src/modules/auth/controllers";
-import { createUser, getUserByEmail } from "../../../src/modules/users/queries";
-import { User } from "../../../src/modules/users/schema";
+import { login, signup } from "@/modules/auth/controllers.js";
+import { createUser, getUserByEmail } from "@/modules/users/queries.js";
+import type { User } from "@/modules/users/schema.js";
 import {
   ConflictError,
   UnauthenticatedError,
   ValidationError,
-} from "../../../src/shared/errors";
+} from "@/shared/errors.js";
 
 vi.mock("bcrypt");
 vi.mock("jsonwebtoken");
-vi.mock("../../../src/modules/users/queries");
+vi.mock("@/modules/users/queries");
 
 afterEach(() => vi.clearAllMocks());
 

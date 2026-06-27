@@ -1,15 +1,12 @@
 import type { Request, Response } from "express";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { getAll, getById } from "../../../src/modules/exercises/controllers.js";
-import {
-  getExerciseById,
-  getExercises,
-} from "../../../src/modules/exercises/queries.js";
-import { Exercise } from "../../../src/modules/exercises/schema.js";
-import { NotFoundError, ValidationError } from "../../../src/shared/errors";
+import { getAll, getById } from "@/modules/exercises/controllers.js";
+import { getExerciseById, getExercises } from "@/modules/exercises/queries.js";
+import type { Exercise } from "@/modules/exercises/schema.js";
+import { NotFoundError, ValidationError } from "@/shared/errors.js";
 
-vi.mock("../../../src/modules/exercises/queries.js");
+vi.mock("@/modules/exercises/queries.js");
 
 afterEach(() => vi.clearAllMocks());
 

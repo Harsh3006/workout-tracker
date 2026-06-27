@@ -1,13 +1,13 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { getExercises } from "../../../src/modules/exercises/queries.js";
-import { exerciseCategoryEnum } from "../../../src/modules/exercises/schema.js";
+import { getExercises } from "@/modules/exercises/queries.js";
+import { exerciseCategoryEnum } from "@/modules/exercises/schema.js";
 import {
   getInvalidExerciseIds,
   isExerciseCategory,
-} from "../../../src/modules/exercises/validators.js";
+} from "@/modules/exercises/validators.js";
 
-vi.mock("../../../src/modules/exercises/queries.js");
+vi.mock("@/modules/exercises/queries.js");
 
 afterEach(() => vi.clearAllMocks());
 
