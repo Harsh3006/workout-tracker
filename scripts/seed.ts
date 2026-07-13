@@ -1,10 +1,10 @@
 import { notInArray, sql } from "drizzle-orm";
 
-import exercises from "@/data/exercises.json" with { type: "json" };
+import { db } from "@/db.js";
 import type { NewExercise } from "@/modules/exercises/schema.js";
 import { exercises as exercisesTable } from "@/modules/exercises/schema.js";
 
-import { db } from "./index.js";
+import exercises from "../data/exercises.json" with { type: "json" };
 
 await db.transaction(async (tx) => {
   // Upsert all exercises from JSON

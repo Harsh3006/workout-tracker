@@ -1,8 +1,8 @@
 import type { RequestHandler } from "express";
 import jsonwebtoken from "jsonwebtoken";
 
-import { JWT_SECRET } from "@/config/env.js";
 import type { AuthPayload } from "@/modules/auth/types.js";
+import settings from "@/settings.js";
 import { UnauthenticatedError } from "@/shared/errors.js";
 
 export const authenticate: RequestHandler = (req, _res, next) => {
@@ -13,7 +13,10 @@ export const authenticate: RequestHandler = (req, _res, next) => {
 
   const token = authHeader.slice(7);
   try {
-    const decoded = jsonwebtoken.verify(token, JWT_SECRET) as AuthPayload;
+    const decoded = jsonwebtoken.verify(
+      token,
+      settings.jwtSecret
+    ) as AuthPayload;
     req.user = decoded;
     next();
   } catch {
