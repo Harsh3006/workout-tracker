@@ -1,6 +1,6 @@
 import { and, eq, inArray } from "drizzle-orm";
 
-import { db } from "@/db/index.js";
+import { db } from "@/db.js";
 
 import type { Exercise, ExerciseCategory } from "./schema.js";
 import { exercises } from "./schema.js";
