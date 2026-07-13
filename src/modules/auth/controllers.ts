@@ -49,7 +49,7 @@ export async function login(req: Request, res: Response) {
 
   const token = jsonwebtoken.sign(
     { id: user.id, email: user.email },
-    settings.jwt.secret,
+    settings.jwtSecret,
     { expiresIn: "1h" }
   );
   res.json({ message: "Logged in successfully.", token: token });

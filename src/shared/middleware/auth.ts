@@ -15,7 +15,7 @@ export const authenticate: RequestHandler = (req, _res, next) => {
   try {
     const decoded = jsonwebtoken.verify(
       token,
-      settings.jwt.secret
+      settings.jwtSecret
     ) as AuthPayload;
     req.user = decoded;
     next();

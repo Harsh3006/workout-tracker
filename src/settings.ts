@@ -12,9 +12,7 @@ class Settings {
     maxConnections: number;
   }>;
 
-  readonly jwt: Readonly<{
-    secret: string;
-  }>;
+  readonly jwtSecret: string;
 
   constructor() {
     this.nodeEnv = process.env.NODE_ENV ?? "development";
@@ -33,9 +31,7 @@ class Settings {
       ),
     };
 
-    this.jwt = {
-      secret: process.env.JWT_SECRET!,
-    };
+    this.jwtSecret = process.env.JWT_SECRET!;
   }
 }
 
