@@ -12,7 +12,7 @@ export default defineConfig({
       reportsDirectory: "coverage",
       include: ["src/**/*.ts"],
     },
-    globalSetup: ["tests/global-setup.ts"],
+    globalSetup: ["tests/global-setup.ts", "tests/global-teardown.ts"],
   },
   resolve: {
     tsconfigPaths: true,
