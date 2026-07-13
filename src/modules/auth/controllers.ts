@@ -2,10 +2,10 @@ import bcrypt from "bcrypt";
 import type { Request, Response } from "express";
 import jsonwebtoken from "jsonwebtoken";
 
-import { JWT_SECRET } from "@/config/env.js";
 import { createUser, getUserByEmail } from "@/modules/users/queries.js";
 import type { NewUser } from "@/modules/users/schema.js";
 import { validateEmail, validatePassword } from "@/modules/users/validators.js";
+import settings from "@/settings.js";
 import {
   ConflictError,
   UnauthenticatedError,
@@ -49,7 +49,7 @@ export async function login(req: Request, res: Response) {
 
   const token = jsonwebtoken.sign(
     { id: user.id, email: user.email },
-    JWT_SECRET,
+    settings.jwt.secret,
     { expiresIn: "1h" }
   );
   res.json({ message: "Logged in successfully.", token: token });
