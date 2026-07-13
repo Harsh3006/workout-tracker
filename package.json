@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx --env-file=.env --watch src/index.ts",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "start": "node --env-file=.env dist/index.js",
     "format": "prettier --write .",
     "lint": "eslint . --no-warn-ignored --max-warnings=0",
@@ -40,6 +40,7 @@
     "jiti": "^2.7.0",
     "lint-staged": "^17.0.7",
     "prettier": "^3.8.4",
+    "tsc-alias": "^1.9.0",
     "tsx": "^4.22.4",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.61.0",
