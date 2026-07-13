@@ -13,6 +13,7 @@ export default defineConfig({
       include: ["src/**/*.ts"],
     },
     globalSetup: ["tests/global-setup.ts", "tests/global-teardown.ts"],
+    setupFiles: ["tests/setup.ts"],
   },
   resolve: {
     tsconfigPaths: true,

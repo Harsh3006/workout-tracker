@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   create,
@@ -28,8 +28,6 @@ import { ValidationError } from "@/shared/errors.js";
 
 vi.mock("@/modules/workouts/queries.js");
 vi.mock("@/modules/workouts/validators.js");
-
-afterEach(() => vi.clearAllMocks());
 
 const userId = "user-1";
 const workoutId = "workout-1";

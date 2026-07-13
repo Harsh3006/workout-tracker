@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { getAll, getById } from "@/modules/exercises/controllers.js";
 import { getExerciseById, getExercises } from "@/modules/exercises/queries.js";
@@ -7,8 +7,6 @@ import type { Exercise } from "@/modules/exercises/schema.js";
 import { NotFoundError, ValidationError } from "@/shared/errors.js";
 
 vi.mock("@/modules/exercises/queries.js");
-
-afterEach(() => vi.clearAllMocks());
 
 function createMockResponse(): Response {
   return {

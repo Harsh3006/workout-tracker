@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { getInvalidExerciseIds } from "@/modules/exercises/validators.js";
 import type { CreateWorkoutData } from "@/modules/workouts/types.js";
@@ -10,8 +10,6 @@ import {
 import { ValidationError } from "@/shared/errors.js";
 
 vi.mock("@/modules/exercises/validators.js");
-
-afterEach(() => vi.clearAllMocks());
 
 function createWorkoutData(overrides = {}): CreateWorkoutData {
   return {
