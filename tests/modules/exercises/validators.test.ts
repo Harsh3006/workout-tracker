@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { getExercises } from "@/modules/exercises/queries.js";
 import { exerciseCategoryEnum } from "@/modules/exercises/schema.js";
@@ -9,8 +9,6 @@ import {
 import { ValidationError } from "@/shared/errors.js";
 
 vi.mock("@/modules/exercises/queries.js");
-
-afterEach(() => vi.clearAllMocks());
 
 describe("validateExerciseCategory", () => {
   it("throws ValidationError for a non-string value", () => {

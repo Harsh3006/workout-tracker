@@ -1,5 +1,5 @@
-import type { Request, Response } from "express";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import type { Request } from "express";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   create,
@@ -26,10 +26,10 @@ import {
 } from "@/modules/workouts/validators.js";
 import { ValidationError } from "@/shared/errors.js";
 
+import { createMockResponse } from "../../mocks.js";
+
 vi.mock("@/modules/workouts/queries.js");
 vi.mock("@/modules/workouts/validators.js");
-
-afterEach(() => vi.clearAllMocks());
 
 const userId = "user-1";
 const workoutId = "workout-1";
@@ -50,14 +50,6 @@ function createMockRequestWithId(overrides = {}) {
     body: {},
     ...overrides,
   } as unknown as Request<{ id: string }>;
-}
-
-function createMockResponse(): Response {
-  return {
-    status: vi.fn().mockReturnThis(),
-    json: vi.fn(),
-    send: vi.fn(),
-  } as unknown as Response;
 }
 
 function createMockWorkout(overrides = {}): Workout {
