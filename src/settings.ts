@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config({ quiet: true });
+
 class Settings {
   readonly nodeEnv: string;
 

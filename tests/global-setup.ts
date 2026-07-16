@@ -4,7 +4,7 @@ import { Client } from "pg";
 
 import settings from "@/settings.js";
 
-const TEST_DATABASE_NAME = `${settings.database.name}Test`;
+const TEST_DATABASE_NAME = `${settings.database.name}_test`;
 
 function createClient(database: string) {
   return new Client({
