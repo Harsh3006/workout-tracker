@@ -33,7 +33,7 @@ jobs:
     env:
       NODE_ENV: "test"
 
-      DATABASE_NAME: WorkoutTracker
+      DATABASE_NAME: postgres
       DATABASE_USER: postgres
       DATABASE_PASSWORD: postgres
       DATABASE_HOST: localhost

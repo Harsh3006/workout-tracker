@@ -2,7 +2,7 @@ import { Client } from "pg";
 
 import settings from "@/settings.js";
 
-const TEST_DATABASE_NAME = `${settings.database.name}Test`;
+const TEST_DATABASE_NAME = `${settings.database.name}_test`;
 
 export async function teardown() {
   const client = new Client({
