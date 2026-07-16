@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import type { Request, Response } from "express";
+import type { Request } from "express";
 import jsonwebtoken from "jsonwebtoken";
 import { describe, expect, it, vi } from "vitest";
 
@@ -11,6 +11,8 @@ import {
   UnauthenticatedError,
   ValidationError,
 } from "@/shared/errors.js";
+
+import { createMockResponse } from "../../mocks.js";
 
 vi.mock("bcrypt");
 vi.mock("jsonwebtoken");
@@ -48,13 +50,6 @@ function createMockUser(): User {
     lastName: "Doe",
     passwordHash: "hashedPassword",
   };
-}
-
-function createMockResponse(): Response {
-  return {
-    status: vi.fn().mockReturnThis(),
-    json: vi.fn(),
-  } as unknown as Response;
 }
 
 describe("signup", () => {

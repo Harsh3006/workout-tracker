@@ -1,4 +1,4 @@
-import type { Request, Response } from "express";
+import type { Request } from "express";
 import { describe, expect, it, vi } from "vitest";
 
 import { getAll, getById } from "@/modules/exercises/controllers.js";
@@ -6,14 +6,9 @@ import { getExerciseById, getExercises } from "@/modules/exercises/queries.js";
 import type { Exercise } from "@/modules/exercises/schema.js";
 import { NotFoundError, ValidationError } from "@/shared/errors.js";
 
-vi.mock("@/modules/exercises/queries.js");
+import { createMockResponse } from "../../mocks.js";
 
-function createMockResponse(): Response {
-  return {
-    status: vi.fn().mockReturnThis(),
-    json: vi.fn(),
-  } as unknown as Response;
-}
+vi.mock("@/modules/exercises/queries.js");
 
 function createMockExercise(): Exercise {
   return {
