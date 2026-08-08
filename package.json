@@ -1,39 +1,30 @@
 {
   "name": "workout-tracker",
   "version": "1.0.0",
-  "type": "module",
+  "workspaces": [
+    "apps/api"
+  ],
   "scripts": {
-    "dev": "tsx --watch src/index.ts",
-    "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
-    "start": "node dist/index.js",
+    "prepare": "husky",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\"",
-    "lint": "eslint . --no-warn-ignored --max-warnings=0",
-    "typecheck": "tsc --noEmit",
-    "prepare": "husky",
-    "seed": "tsx scripts/seed.ts",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage --watch=false"
+    "lint": "npm run lint --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "build": "npm run build --workspaces",
+    "dev:api": "npm run dev --workspace=@workout-tracker/api",
+    "start:api": "npm run start --workspace=@workout-tracker/api",
+    "test": "npm run test --workspace=@workout-tracker/api"
   },
   "lint-staged": {
-    "*.{ts,json,yml,yaml,md}": [
+    "*.{ts,tsx,json,yml,yaml,md}": [
       "prettier --write"
     ],
-    "*.ts": [
+    "*.{ts,tsx}": [
       "eslint --fix"
     ]
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/bcrypt": "^6.0.0",
-    "@types/express": "^5.0.6",
-    "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^25.9.3",
-    "@types/pg": "^8.20.0",
-    "@vitest/coverage-v8": "^4.1.9",
-    "@vitest/ui": "^4.1.9",
-    "drizzle-kit": "^0.31.10",
     "eslint": "^10.5.0",
     "eslint-plugin-simple-import-sort": "^13.0.0",
     "globals": "^17.6.0",
@@ -41,24 +32,13 @@
     "jiti": "^2.7.0",
     "lint-staged": "^17.0.7",
     "prettier": "^3.8.4",
-    "tsc-alias": "^1.9.0",
-    "tsx": "^4.22.4",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.61.0",
-    "vitest": "^4.1.9"
-  },
-  "dependencies": {
-    "bcrypt": "^6.0.0",
-    "dotenv": "^17.4.2",
-    "drizzle-orm": "^0.45.2",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "pg": "^8.22.0"
+    "typescript-eslint": "^8.61.0"
   },
   "allowScripts": {
     "bcrypt@6.0.0": true,
-    "esbuild@0.28.1": true,
     "esbuild@0.18.20": true,
-    "esbuild@0.25.12": true
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.1": true
   }
 }
