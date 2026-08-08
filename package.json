@@ -2,17 +2,20 @@
   "name": "workout-tracker",
   "version": "1.0.0",
   "workspaces": [
-    "apps/api"
+    "apps/api",
+    "apps/web"
   ],
   "scripts": {
     "prepare": "husky",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\"",
-    "lint": "npm run lint --workspaces",
+    "lint": "eslint . --no-warn-ignored --max-warnings=0",
     "typecheck": "npm run typecheck --workspaces",
     "build": "npm run build --workspaces",
     "dev:api": "npm run dev --workspace=@workout-tracker/api",
+    "dev:web": "npm run dev --workspace=@workout-tracker/web",
     "start:api": "npm run start --workspace=@workout-tracker/api",
+    "start:web": "npm run start --workspace=@workout-tracker/web",
     "test": "npm run test --workspace=@workout-tracker/api",
     "test:coverage": "npm run test:coverage --workspace=@workout-tracker/api"
   },
