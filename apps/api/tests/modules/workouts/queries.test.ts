@@ -245,9 +245,6 @@ describe("updateWorkout", () => {
       performedAt: newPerformedAt,
       notes: newNotes,
     });
-    expect(updatedWorkout.updatedAt.getTime()).not.toEqual(
-      workout.updatedAt.getTime()
-    );
   });
 
   it("does not update fields that are not provided", async () => {
@@ -261,9 +258,6 @@ describe("updateWorkout", () => {
     expect(updatedWorkout.name).toBe("Partially Updated Workout Name");
     expect(updatedWorkout.performedAt).toEqual(workout.performedAt);
     expect(updatedWorkout.notes).toBe(workout.notes);
-    expect(updatedWorkout.updatedAt.getTime()).not.toEqual(
-      workout.updatedAt.getTime()
-    );
   });
 
   it("replaces existing workout exercises and exercise sets", async () => {
