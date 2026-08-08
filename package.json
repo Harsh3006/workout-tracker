@@ -13,7 +13,8 @@
     "build": "npm run build --workspaces",
     "dev:api": "npm run dev --workspace=@workout-tracker/api",
     "start:api": "npm run start --workspace=@workout-tracker/api",
-    "test": "npm run test --workspace=@workout-tracker/api"
+    "test": "npm run test --workspace=@workout-tracker/api",
+    "test:coverage": "npm run test:coverage --workspace=@workout-tracker/api"
   },
   "lint-staged": {
     "*.{ts,tsx,json,yml,yaml,md}": [
