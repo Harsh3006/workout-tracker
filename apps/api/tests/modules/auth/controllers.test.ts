@@ -3,7 +3,11 @@ import type { Request } from "express";
 import jsonwebtoken from "jsonwebtoken";
 import { describe, expect, it, vi } from "vitest";
 
-import { login, signup } from "@/modules/auth/controllers.js";
+import {
+  accessTokenCookieOptions,
+  login,
+  signup,
+} from "@/modules/auth/controllers.js";
 import { createUser, getUserByEmail } from "@/modules/users/queries.js";
 import type { User } from "@/modules/users/schema.js";
 import {
@@ -194,6 +198,7 @@ describe("login", () => {
 
     const req = createLoginRequest();
     const res = createMockResponse();
+    res.cookie = vi.fn();
     await login(req, res);
 
     expect(getUserByEmail).toHaveBeenCalledExactlyOnceWith(req.body.email);
@@ -206,9 +211,19 @@ describe("login", () => {
       expect.any(String),
       { expiresIn: "1h" }
     );
-    expect(res.json).toHaveBeenCalledWith({
+    expect(res.cookie).toHaveBeenCalledExactlyOnceWith(
+      "accessToken",
+      "mocked-jwt-token",
+      accessTokenCookieOptions
+    );
+    expect(res.json).toHaveBeenCalledExactlyOnceWith({
       message: "Logged in successfully.",
-      token: "mocked-jwt-token",
+      user: {
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      },
     });
   });
 });

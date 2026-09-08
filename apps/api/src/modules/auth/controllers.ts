@@ -12,6 +12,13 @@ import {
   ValidationError,
 } from "@/shared/errors.js";
 
+export const accessTokenCookieOptions = {
+  httpOnly: true,
+  secure: settings.nodeEnv === "production",
+  sameSite: "lax" as const,
+  maxAge: 60 * 60 * 1000, // 1 hour
+};
+
 export async function signup(req: Request, res: Response) {
   const { email, password, firstName, lastName } = req.body;
   if (!email || !password || !firstName)
@@ -52,5 +59,15 @@ export async function login(req: Request, res: Response) {
     settings.jwtSecret,
     { expiresIn: "1h" }
   );
-  res.json({ message: "Logged in successfully.", token: token });
+
+  res.cookie("accessToken", token, accessTokenCookieOptions);
+  res.json({
+    message: "Logged in successfully.",
+    user: {
+      id: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    },
+  });
 }
