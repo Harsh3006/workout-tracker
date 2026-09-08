@@ -2,7 +2,9 @@ import dotenv from "dotenv";
 dotenv.config({ quiet: true });
 
 class Settings {
+  readonly port: number;
   readonly nodeEnv: string;
+  readonly clientURL: string;
 
   readonly database: Readonly<{
     name: string;
@@ -18,7 +20,9 @@ class Settings {
   readonly jwtSecret: string;
 
   constructor() {
+    this.port = Number(process.env.PORT ?? 3000);
     this.nodeEnv = process.env.NODE_ENV ?? "development";
+    this.clientURL = process.env.CLIENT_URL ?? "http://localhost:5173";
 
     this.database = {
       name: process.env.DATABASE_NAME!,

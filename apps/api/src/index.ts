@@ -1,14 +1,17 @@
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import express from "express";
 
 import authRouter from "./modules/auth/routes.js";
 import exerciseRouter from "./modules/exercises/routes.js";
 import workoutsRouter from "./modules/workouts/routes.js";
+import settings from "./settings.js";
 import { NotFoundError } from "./shared/errors.js";
 import { authenticate } from "./shared/middleware/auth.js";
 import { errorHandler } from "./shared/middleware/error-handler.js";
 
 const app = express();
+app.use(cors({ origin: settings.clientURL, credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 
@@ -25,6 +28,6 @@ app.use((_req, _res) => {
 });
 app.use(errorHandler);
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(settings.port, () => {
+  console.log(`Server is running on port ${settings.port}`);
 });
