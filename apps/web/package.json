@@ -1,5 +1,5 @@
 {
-  "name": "@workout-tracker/web",
+  "name": "@ferrum/web",
   "private": true,
   "type": "module",
   "scripts": {

@@ -1,5 +1,5 @@
 {
-  "name": "@workout-tracker/api",
+  "name": "@ferrum/api",
   "type": "module",
   "scripts": {
     "dev": "tsx --watch src/index.ts",
