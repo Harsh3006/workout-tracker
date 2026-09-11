@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.get("/", (_req, res) => {
-  res.send("Welcome to Workout Tracker API");
+  res.send("Welcome to Ferrum API");
 });
 
 app.use("/exercises", exerciseRouter);

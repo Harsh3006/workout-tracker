@@ -1,5 +1,5 @@
 {
-  "name": "workout-tracker",
+  "name": "ferrum",
   "version": "1.0.0",
   "workspaces": [
     "apps/api",
@@ -12,12 +12,12 @@
     "lint": "eslint . --no-warn-ignored --max-warnings=0",
     "typecheck": "npm run typecheck --workspaces",
     "build": "npm run build --workspaces",
-    "dev:api": "npm run dev --workspace=@workout-tracker/api",
-    "dev:web": "npm run dev --workspace=@workout-tracker/web",
-    "start:api": "npm run start --workspace=@workout-tracker/api",
-    "start:web": "npm run start --workspace=@workout-tracker/web",
-    "test": "npm run test --workspace=@workout-tracker/api",
-    "test:coverage": "npm run test:coverage --workspace=@workout-tracker/api"
+    "dev:api": "npm run dev --workspace=@ferrum/api",
+    "dev:web": "npm run dev --workspace=@ferrum/web",
+    "start:api": "npm run start --workspace=@ferrum/api",
+    "start:web": "npm run start --workspace=@ferrum/web",
+    "test": "npm run test --workspace=@ferrum/api",
+    "test:coverage": "npm run test:coverage --workspace=@ferrum/api"
   },
   "lint-staged": {
     "*.{ts,tsx,json,yml,yaml,md}": [

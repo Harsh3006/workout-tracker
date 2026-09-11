@@ -1,6 +1,6 @@
-# Workout Tracker
+# Ferrum
 
-Workout Tracker is a full-stack web application for logging and tracking gym workouts. Users can build a personal workout history by selecting exercises from a predefined exercise catalogue, recording sets, reps, and weight, and monitoring their progress over time.
+Ferrum is a full-stack web application for logging and tracking gym workouts. Users can build a personal workout history by selecting exercises from a predefined exercise catalogue, recording sets, reps, and weight, and monitoring their progress over time.
 
 The project is currently focused on building a robust backend with a REST API, authentication, and comprehensive test coverage. A frontend client will be added in a future phase.
 
@@ -23,8 +23,8 @@ The project is currently focused on building a robust backend with a REST API, a
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/Harsh3006/workout-tracker.git
-   cd workout-tracker
+   git clone https://github.com/Harsh3006/ferrum.git
+   cd ferrum
    ```
 
 2. **Install dependencies**
